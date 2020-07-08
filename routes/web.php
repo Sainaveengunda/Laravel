@@ -12,45 +12,45 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/*Route::get('/', function () {
-    //return view('welcome');
+/*Route::get('/', function () {         //get request to home page
+    //return view('welcome');           //request to the view
       //return 'Hello world';
-     // return ["car","Bike"];
+     // return ["car","Bike"];          //returning an array
 });
 Route::get('/welcome', function () {
-    return view('welcome');
+    return view('welcome');    
     //return 'Hello world';
 });
 
-Route::get('laracast', function()
+Route::get('laracast', function()       //laracast view created and viewed in the browser
 {
     return view('laracast');
 });
-Route::get('/', function(){
+Route::get('/', function(){             //passing data through request string
     $name = request('name');
-    return view('laracast',[
+    return view('laracast',[            
         'name'=>$name
     ]});
 
 });
-Route::get('/posts/{post}', function(){
+Route::get('/posts/{post}', function(){ //Route accepting wildcard value or any value
   return view('post');
 
 });*/
 
 Route::get('/posts/{post}', function($post)
 {
-    $posts=[
+    $posts=[                                           //Data store
         'get'=> 'Loads views into the web browser',
         'return'=>'returns the necessary'
     ];
-    if(! array_key_exists($post,$posts)){
+    if(! array_key_exists($post,$posts)){             //Accesseing post doesnt exist
         abort(404,'SORRY NOT FOUND');
     }
-    return view('post',[
+    return view('post',[                        
         'post'=>$posts[$post] 
     ]);
 }
 );
 
-//Route::get('/posts/{post}', 'ostsController@show');
+//Route::get('/posts/{post}', 'postsController@show');   //
