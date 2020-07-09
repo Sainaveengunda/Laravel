@@ -1,22 +1,34 @@
-
 <?php
 
-namespace App\Htttp\Controllers;
+namespace App\Http\Controllers;
 
-class PostsController
+use Illuminate\Http\Request;
+
+use DB;
+
+use App\table1;
+
+
+class PostsController extends Controller
 {
-    public function show($post)
+    public function show($name)
     {
-        $posts=[
-            'get'=> 'Loads views into the web browser',
-            'return'=>'returns the necessary'
-        ];
-        if(! array_key_exists($post,$posts)){
-            abort(404,'SORRY NOT FOUND');
-        }
-        return view('post',[
-            'post'=>$posts[$post] 
-        ]);
+       
+      //  $post=DB::table('table1')->where('name', $name)->first(); //Fetching data from DB
+       
+      //$post = table1::where('name', $name)->first();
+        $post=table1::all();
+        dd($post);
+       if(! $post)
+       {
+           abort('404');
+       }
+
+    return view('post',[                        
+        'post'=>$posts[$post] 
+    ]);
     }
 }
+
+    
 

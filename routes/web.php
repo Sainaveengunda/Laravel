@@ -36,7 +36,7 @@ Route::get('/', function(){             //passing data through request string
 Route::get('/posts/{post}', function(){ //Route accepting wildcard value or any value
   return view('post');
 
-});*/
+});
 
 Route::get('/posts/{post}', function($post)
 {
@@ -52,5 +52,18 @@ Route::get('/posts/{post}', function($post)
     ]);
 }
 );
+Route::get('/about', function(){
+    return view('pages.about');
+});
+Route::get('/users/{id}/{name}', function($name,$id){
+    return 'This is user '.$name.'  with an id '.$id;
+});*/
 
-//Route::get('/posts/{post}', 'postsController@show');   //
+//Route::get('/posts/{post}', 'PostsController@show');   
+
+Route::get('/', function () {         //get request to home page
+    
+    return view('welcome');           //request to the view
+     
+});
+
